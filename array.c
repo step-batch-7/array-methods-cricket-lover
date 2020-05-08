@@ -70,7 +70,7 @@ int reduce(Array_Ptr src, int init, Reducer reducer)
 {
   for (int i = 0; i < src->length; i++)
   {
-    init = (*reducer)(init, src->array[i]);
+    init = (*reducer)(src->array[i], init);
   }
   return init;
 }
