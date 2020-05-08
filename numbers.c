@@ -14,9 +14,9 @@ int main(void)
   printf("Original array: ");
   display_int_array(numbers);
 
-  Array_Ptr squares = map(numbers, square_of_num);
-  Array_Ptr evens = filter(numbers, is_even);
-  int sum = reduce(numbers, 0, add);
+  Array_Ptr squares = map(numbers, &square_of_num);
+  Array_Ptr evens = filter(numbers, &is_even);
+  int sum = reduce(numbers, 0, &add);
 
   printf("Mapped array with squares: ");
   display_int_array(squares);
