@@ -4,7 +4,7 @@
 
 int main(void)
 {
-  Array *numbers = malloc(sizeof(Array));
+  Array_Ptr numbers = malloc(sizeof(Array));
   numbers->length = 4;
   numbers->array = malloc(sizeof(int) * numbers->length);
   numbers->array[0] = 2;
@@ -14,8 +14,8 @@ int main(void)
   printf("Original array: ");
   display_int_array(numbers);
 
-  Array *squares = map(numbers, square_of_num);
-  Array *evens = filter(numbers, is_even);
+  Array_Ptr squares = map(numbers, square_of_num);
+  Array_Ptr evens = filter(numbers, is_even);
   int sum = reduce(numbers, 0, add);
 
   printf("Mapped array with squares: ");

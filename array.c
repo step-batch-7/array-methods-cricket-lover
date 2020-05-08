@@ -17,9 +17,9 @@ int add(int a, int b)
   return a + b;
 }
 
-Array *create_int_array_from(int *values, int length)
+Array_Ptr create_int_array_from(int *values, int length)
 {
-  Array *newArray = malloc(sizeof(Array));
+  Array_Ptr newArray = malloc(sizeof(Array));
   newArray->length = length;
   newArray->array = malloc(sizeof(int) * newArray->length);
   for (int i = 0; i < newArray->length; i++)
@@ -29,7 +29,7 @@ Array *create_int_array_from(int *values, int length)
   return newArray;
 }
 
-void display_int_array(Array *array)
+void display_int_array(Array_Ptr array)
 {
   for (int i = 0; i < array->length; i++)
   {
@@ -38,9 +38,9 @@ void display_int_array(Array *array)
   printf("\n");
 }
 
-Array *map(Array *src, Mapper mapper)
+Array_Ptr map(Array_Ptr src, Mapper mapper)
 {
-  Array *newArray = malloc(sizeof(Array));
+  Array_Ptr newArray = malloc(sizeof(Array));
   newArray->length = src->length;
   newArray->array = malloc(sizeof(int) * newArray->length);
   for (int i = 0; i < src->length; i++)
@@ -51,7 +51,7 @@ Array *map(Array *src, Mapper mapper)
   return newArray;
 }
 
-Array *filter(Array *src, Predicate predicate)
+Array_Ptr filter(Array_Ptr src, Predicate predicate)
 {
   int temp_array[src->length];
   int count = 0;
@@ -66,7 +66,7 @@ Array *filter(Array *src, Predicate predicate)
   return create_int_array_from(temp_array, count);
 }
 
-int reduce(Array *src, int init, Reducer reducer)
+int reduce(Array_Ptr src, int init, Reducer reducer)
 {
   for (int i = 0; i < src->length; i++)
   {

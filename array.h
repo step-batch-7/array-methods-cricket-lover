@@ -15,15 +15,16 @@ typedef struct
   int *array;
   int length;
 } Array;
+typedef Array *Array_Ptr;
 
 int square_of_num(int a);
 Bool is_even(int a);
 int add(int a, int b);
-Array *create_int_array_from(int *values, int length);
-void display_int_array(Array *array);
+Array_Ptr create_int_array_from(int *values, int length);
+void display_int_array(Array_Ptr array);
 
-Array *map(Array *src, Mapper mapper);
-Array *filter(Array *src, Predicate predicate);
-int reduce(Array *src, int init, Reducer reducer);
+Array_Ptr map(Array_Ptr src, Mapper mapper);
+Array_Ptr filter(Array_Ptr src, Predicate predicate);
+int reduce(Array_Ptr src, int init, Reducer reducer);
 
 #endif
