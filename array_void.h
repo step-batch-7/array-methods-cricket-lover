@@ -23,6 +23,7 @@ void display_array(ArrayVoid_ptr array, DisplayData displayer);
 
 Object void_square(Object a);
 Bool void_filter_vowels(Object alphabet);
+Object void_sum(Object element, Object context);
 
 ArrayVoid_ptr map_void(ArrayVoid_ptr src, MapperVoid mapper);
 ArrayVoid_ptr filter_void(ArrayVoid_ptr src, PredicateVoid predicate);

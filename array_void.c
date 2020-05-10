@@ -42,6 +42,13 @@ Bool void_filter_vowels(Object a)
   return is_vowel;
 }
 
+Object void_sum(Object element, Object context)
+{
+  int *number = (int *)context;
+  *number = *(int *)context + *(int *)element;
+  return number;
+}
+
 ArrayVoid_ptr map_void(ArrayVoid_ptr src, MapperVoid mapper)
 {
   ArrayVoid_ptr newArray = malloc(sizeof(ArrayVoid));
@@ -73,4 +80,13 @@ ArrayVoid_ptr filter_void(ArrayVoid_ptr src, PredicateVoid predicate)
     new_array->array[j] = temp_array[j];
   }
   return new_array;
+}
+
+Object reduce_void(ArrayVoid_ptr src, Object init, ReducerVoid reducer)
+{
+  for (int i = 0; i < src->length; i++)
+  {
+    init = (*reducer)(src->array[i], init);
+  }
+  return init;
 }
