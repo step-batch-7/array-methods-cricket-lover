@@ -22,6 +22,7 @@ void display_int(Object data);
 void display_array(ArrayVoid_ptr array, DisplayData displayer);
 
 Object void_square(Object a);
+Bool void_filter_even(Object a);
 Bool void_filter_vowels(Object alphabet);
 Object void_sum(Object element, Object context);
 

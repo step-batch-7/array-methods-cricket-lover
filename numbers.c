@@ -18,6 +18,10 @@ int main(void)
   new_array->array[2] = number_3;
   new_array->array[3] = number_4;
   int *context = malloc(sizeof(int));
-  Object result = reduce_void(new_array, context, &void_sum);
-  display_int(result);
+  display_array(new_array, &display_int);
+  ArrayVoid_ptr mapped = map_void(new_array, &void_square);
+  display_array(mapped, &display_int);
+  ArrayVoid_ptr filtered = filter_void(new_array, &void_filter_even);
+  display_array(filtered, &display_int);
+  return 0;
 }

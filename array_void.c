@@ -30,9 +30,16 @@ void display_array(ArrayVoid_ptr array, DisplayData displayer)
 
 Object void_square(Object a)
 {
-  int *number = (int *)a;
-  *number = *number * *number;
-  return number;
+  int square_of_a = *(int *)a * *(int *)a;
+  Object square = malloc(sizeof(int));
+  *(int *)square = square_of_a;
+  return square;
+}
+
+Bool void_filter_even(Object a)
+{
+  int number = *(int *)a;
+  return number % 2 == 0 ? True : False;
 }
 
 Bool void_filter_vowels(Object a)
