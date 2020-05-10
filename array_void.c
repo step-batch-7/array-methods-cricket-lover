@@ -35,6 +35,13 @@ Object void_square(Object a)
   return number;
 }
 
+Bool void_filter_vowels(Object a)
+{
+  char alphabet = *(char *)(a);
+  Bool is_vowel = (alphabet == 'a') || (alphabet == 'e') || (alphabet == 'i') || (alphabet == 'o') || (alphabet == 'u');
+  return is_vowel;
+}
+
 ArrayVoid_ptr map_void(ArrayVoid_ptr src, MapperVoid mapper)
 {
   ArrayVoid_ptr newArray = malloc(sizeof(ArrayVoid));
@@ -46,4 +53,24 @@ ArrayVoid_ptr map_void(ArrayVoid_ptr src, MapperVoid mapper)
   }
 
   return newArray;
+}
+
+ArrayVoid_ptr filter_void(ArrayVoid_ptr src, PredicateVoid predicate)
+{
+  Object temp_array[src->length];
+  int count = 0;
+  for (int i = 0; i < src->length; i++)
+  {
+    if ((*predicate)(src->array[i]))
+    {
+      temp_array[count] = src->array[i];
+      count++;
+    }
+  }
+  ArrayVoid_ptr new_array = create_array_from(count);
+  for (int j = 0; j < new_array->length; j++)
+  {
+    new_array->array[j] = temp_array[j];
+  }
+  return new_array;
 }
