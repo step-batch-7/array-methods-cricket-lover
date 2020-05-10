@@ -17,8 +17,10 @@ typedef struct
 typedef ArrayVoid *ArrayVoid_ptr;
 
 ArrayVoid_ptr create_array_from(int length);
+void display_char(Object data);
 void display_int(Object data);
 void display_array(ArrayVoid_ptr array, DisplayData displayer);
+
 Object void_square(Object a);
 
 ArrayVoid_ptr map_void(ArrayVoid_ptr src, MapperVoid mapper);
