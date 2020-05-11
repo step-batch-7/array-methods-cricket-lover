@@ -91,7 +91,7 @@ Object reduce_void(ArrayVoid_ptr src, Object init, ReducerVoid reducer)
 {
   for (int i = 0; i < src->length; i++)
   {
-    (*reducer)(src->array[i], init);
+    init = (*reducer)(src->array[i], init);
   }
   return init;
 }
