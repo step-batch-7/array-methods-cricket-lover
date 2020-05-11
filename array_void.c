@@ -11,7 +11,7 @@ ArrayVoid_ptr create_array_from(int length)
 }
 void display_char(Object data)
 {
-  printf("%c ", *(int *)data);
+  printf("%c ", *(char *)data);
 }
 
 void display_int(Object data)
@@ -23,7 +23,7 @@ void display_array(ArrayVoid_ptr array, DisplayData displayer)
 {
   for (int i = 0; i < array->length; i++)
   {
-    displayer(array->array[i]);
+    (*displayer)(array->array[i]);
   }
   printf("\n");
 }
@@ -58,9 +58,7 @@ Object void_sum(Object element, Object context)
 
 ArrayVoid_ptr map_void(ArrayVoid_ptr src, MapperVoid mapper)
 {
-  ArrayVoid_ptr newArray = malloc(sizeof(ArrayVoid));
-  newArray->length = src->length;
-  newArray->array = malloc(sizeof(Object) * newArray->length);
+  ArrayVoid_ptr newArray = create_array_from(src->length);
   for (int i = 0; i < src->length; i++)
   {
     newArray->array[i] = (*mapper)(src->array[i]);
@@ -93,7 +91,7 @@ Object reduce_void(ArrayVoid_ptr src, Object init, ReducerVoid reducer)
 {
   for (int i = 0; i < src->length; i++)
   {
-    init = (*reducer)(src->array[i], init);
+    (*reducer)(src->array[i], init);
   }
   return init;
 }
