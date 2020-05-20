@@ -7,6 +7,7 @@ typedef void (*DisplayData)(Object);
 typedef Object (*MapperVoid)(Object);
 typedef Bool (*PredicateVoid)(Object);
 typedef Object (*ReducerVoid)(Object, Object);
+typedef Bool (*Comparator)(Object, Object);
 
 typedef struct
 {
@@ -20,6 +21,7 @@ ArrayVoid_ptr create_array_from(int length);
 void display_char(Object data);
 void display_int(Object data);
 void display_array(ArrayVoid_ptr array, DisplayData displayer);
+Bool compare_int(Object, Object);
 
 Object void_square(Object a);
 Bool void_filter_even(Object a);
@@ -29,4 +31,6 @@ Object void_sum(Object element, Object context);
 ArrayVoid_ptr map_void(ArrayVoid_ptr src, MapperVoid mapper);
 ArrayVoid_ptr filter_void(ArrayVoid_ptr src, PredicateVoid predicate);
 Object reduce_void(ArrayVoid_ptr src, Object init, ReducerVoid reducer);
+void selection_sort(ArrayVoid_ptr numbers, Comparator);
+void bubble_sort(ArrayVoid_ptr numbers, Comparator);
 #endif

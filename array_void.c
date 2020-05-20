@@ -19,6 +19,11 @@ void display_int(Object data)
   printf("%d ", *(int *)data);
 }
 
+Bool compare_int(Object a, Object b)
+{
+  return *(int *)a < *(int *)b;
+}
+
 void display_array(ArrayVoid_ptr array, DisplayData displayer)
 {
   for (int i = 0; i < array->length; i++)
@@ -94,4 +99,45 @@ Object reduce_void(ArrayVoid_ptr src, Object init, ReducerVoid reducer)
     init = (*reducer)(src->array[i], init);
   }
   return init;
+}
+
+void selection_sort(ArrayVoid_ptr numbers, Comparator compare_data)
+{
+  for (int i = 0; i < numbers->length; i++)
+  {
+    int index_of_min = i;
+    for (int j = i + 1; j < numbers->length; j++)
+    {
+      if (compare_data(numbers->array[j], numbers->array[index_of_min]))
+      {
+        index_of_min = j;
+      }
+    }
+    Object temp = numbers->array[index_of_min];
+    numbers->array[index_of_min] = numbers->array[i];
+    numbers->array[i] = temp;
+  }
+}
+
+void bubble_sort(ArrayVoid_ptr numbers, Comparator compare_data)
+{
+  for (int i = 0; i < numbers->length; i++)
+  {
+    int swaps = 0;
+    for (int j = 1; j < numbers->length; j++)
+    {
+      if (compare_data(numbers->array[j], numbers->array[j - 1]))
+      {
+        Object temp = numbers->array[j];
+        numbers->array[j] = numbers->array[j - 1];
+        numbers->array[j - 1] = temp;
+        swaps++;
+        display_array(numbers, &display_int);
+      }
+    }
+    if (swaps == 0)
+    {
+      break;
+    }
+  }
 }
