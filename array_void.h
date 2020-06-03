@@ -11,6 +11,12 @@ typedef Bool (*Comparator)(Object, Object);
 
 typedef struct
 {
+  Object *greater;
+  Object *lesser;
+} lesserAndGreater;
+
+typedef struct
+{
   Object *array;
   int length;
 } ArrayVoid;
@@ -22,6 +28,8 @@ void display_char(Object data);
 void display_int(Object data);
 void display_array(ArrayVoid_ptr array, DisplayData displayer);
 Bool compare_int(Object, Object);
+Bool compare_lesser_int(Object, Object);
+Bool compare_greater_int(Object, Object);
 
 Object void_square(Object a);
 Bool void_filter_even(Object a);
@@ -33,4 +41,5 @@ ArrayVoid_ptr filter_void(ArrayVoid_ptr src, PredicateVoid predicate);
 Object reduce_void(ArrayVoid_ptr src, Object init, ReducerVoid reducer);
 void selection_sort(ArrayVoid_ptr numbers, Comparator);
 void bubble_sort(ArrayVoid_ptr numbers, Comparator);
+void quick_sort(ArrayVoid_ptr numbers, int left, int right, Comparator compare_less_than);
 #endif

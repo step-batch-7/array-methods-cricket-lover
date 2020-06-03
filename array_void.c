@@ -9,6 +9,7 @@ ArrayVoid_ptr create_array_from(int length)
   new_array->array = malloc(sizeof(Object) * length);
   return new_array;
 }
+
 void display_char(Object data)
 {
   printf("%c ", *(char *)data);
@@ -132,12 +133,60 @@ void bubble_sort(ArrayVoid_ptr numbers, Comparator compare_data)
         numbers->array[j] = numbers->array[j - 1];
         numbers->array[j - 1] = temp;
         swaps++;
-        display_array(numbers, &display_int);
       }
     }
     if (swaps == 0)
     {
       break;
     }
+  }
+}
+
+void swap(ArrayVoid_ptr numbers, int firstIndex, int secondIndex)
+{
+  Object temp = numbers->array[firstIndex];
+  numbers->array[firstIndex] = numbers->array[secondIndex];
+  numbers->array[secondIndex] = temp;
+}
+
+int partition(ArrayVoid_ptr numbers, int left, int right, Comparator compare_less_than)
+{
+  Object pivot = numbers->array[(int)((right + left) / 2)];
+  while (left <= right)
+  {
+    while (compare_less_than(numbers->array[left], pivot))
+    {
+      left++;
+    }
+    while (compare_less_than(pivot, numbers->array[right]))
+    {
+      right--;
+    }
+    if (left <= right)
+    {
+      swap(numbers, left, right);
+      left++;
+      right--;
+    }
+  }
+
+  return left;
+}
+
+void quick_sort(ArrayVoid_ptr numbers, int left, int right, Comparator compare_less_than)
+{
+  if (numbers->length <= 1)
+  {
+    return;
+  }
+  int index = partition(numbers, left, right, compare_less_than);
+
+  if (left < index - 1)
+  {
+    quick_sort(numbers, left, index - 1, compare_less_than);
+  }
+  if (index < right)
+  {
+    quick_sort(numbers, index, right, compare_less_than);
   }
 }
